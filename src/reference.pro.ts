@@ -1,3 +1,4 @@
+import type { Nil } from "./primitive";
 import { isNil, isString } from "./primitive";
 import { isEmptyString, isNaN } from "./primitive.pro";
 import { isArray, isObject } from "./reference";
@@ -68,7 +69,9 @@ export function isStringArray(source: unknown): source is string[] {
  * @param source The value to check.
  * @returns true if source is null, false otherwise.
  */
-export function isEmpty(source: unknown) {
+export function isEmpty(
+  source: unknown,
+): source is "" | Nil | [] | Record<string, never> {
   // Checks for an empty array, empty object, empty string, null, or NaN, and returns true if one of the conditions is met.
   return (
     isEmptyArray(source) || // Check if it's an empty array.
